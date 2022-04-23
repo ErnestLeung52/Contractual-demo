@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-const InputUser = ({ user: userList, setUser }) => {
+const UpdateBalance = ({ user: userList, setUser }) => {
   const [user, createUser] = useState({
     fullname: '',
-    age: '',
+    change: '',
     // buyin: '',
     // ending: '',
   });
@@ -24,7 +24,7 @@ const InputUser = ({ user: userList, setUser }) => {
     try {
       const body = { user };
       const response = await fetch(`${url}${endpoint}`, {
-        method: 'POST',
+        method: 'PATCH',
         headers: { 'Content-Type': 'Application/JSON' },
         body: JSON.stringify(body),
       });
@@ -40,7 +40,7 @@ const InputUser = ({ user: userList, setUser }) => {
 
   return (
     <div className='input-container'>
-      <h3>Add Player</h3>
+      <h3>Update Balance</h3>
       <form className='input-form' onSubmit={onSubmitForm}>
         <div className='input-row'>
           <input
@@ -52,12 +52,12 @@ const InputUser = ({ user: userList, setUser }) => {
           />
           <input
             type='text'
-            placeholder='Age'
-            name='age'
-            value={user.age}
+            placeholder='Change'
+            name='change'
+            value={user.change}
             onChange={handleChange}
           />
-          <button className='addButton'>Create</button>
+          <button className='addButton'>Update</button>
         </div>
         {/* <div className='input-row'>
           <input
@@ -80,4 +80,4 @@ const InputUser = ({ user: userList, setUser }) => {
   );
 };
 
-export default InputUser;
+export default UpdateBalance;
