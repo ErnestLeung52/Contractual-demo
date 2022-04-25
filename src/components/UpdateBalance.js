@@ -19,20 +19,20 @@ const UpdateBalance = ({ user: userList, setUser }) => {
     e.preventDefault();
 
     const url = 'http://localhost:5000';
-    const endpoint = '/api/user';
+    const endpoint = '/balance';
 
+    // console.log(user);
     try {
-      const body = { user };
       const response = await fetch(`${url}${endpoint}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'Application/JSON' },
-        body: JSON.stringify(body),
+        body: JSON.stringify(user),
       });
 
       const data = await response.json();
-      const userAdded = data.user.rows[0];
-
-      setUser([...userList, userAdded]);
+      // const userAdded = data.user.rows[0];
+      // console.log(data);
+      // setUser([...userList, userAdded]);
     } catch (error) {
       console.error(error.message);
     }

@@ -1,17 +1,17 @@
-const db = require("../models/dbModels");
+const db = require('../models/dbModels');
 
 const dbController = {};
 
 // Add user
 dbController.addUser = async (req, res, next) => {
-  const { name, age } = req.body;
+  const { fullname, age } = req.body;
   try {
     const addUserQuery = `
-        INSERT INTO users (name, age)
-          VALUES($1, $2)
-          RETURNING *
-        `;
-    await db.query(addUserQuery, [name, age]);
+    INSERT INTO users (name, age)
+    VALUES($1, $2)
+    RETURNING *
+    `;
+    await db.query(addUserQuery, [fullname, age]);
   } catch (error) {
     return next({
       // log: 'Express error in addUser middleware when adding to users',
@@ -30,11 +30,11 @@ dbController.addUser = async (req, res, next) => {
           VALUES($1, 0)
           RETURNING *
         `;
-    await db.query(addUserBalanceQuery, [name]);
+    await db.query(addUserBalanceQuery, [fullname]);
     return next();
   } catch (error) {
     return next({
-      log: "Express error in addUser middleware when adding to user_balance",
+      log: 'Express error in addUser middleware when adding to user_balance',
       status: 400,
       message: {
         err: `dbController.addUser: ERROR: ${error}`,
@@ -45,14 +45,14 @@ dbController.addUser = async (req, res, next) => {
 
 // Add Balance
 dbController.changeBalance = async (req, res, next) => {
-  const { name, change } = req.body;
+  const { fullname, change } = req.body;
   try {
     const addHistoryQuery = `
         INSERT INTO history (name, change)
           VALUES($1, $2)
           RETURNING *
         `;
-    await db.query(addHistoryQuery, [name, change]);
+    await db.query(addHistoryQuery, [fullname, change]);
   } catch (error) {
     return next({
       status: 400,
@@ -67,7 +67,7 @@ dbController.changeBalance = async (req, res, next) => {
           WHERE name = $1
           RETURNING user_balance.balance
         `;
-    const result = await db.query(changeBalanceQuery, [name, change]);
+    const result = await db.query(changeBalanceQuery, [fullname, change]);
     res.locals.balance = result.rows[0].balance;
     return next();
   } catch (error) {
@@ -80,13 +80,14 @@ dbController.changeBalance = async (req, res, next) => {
 
 // Get History
 dbController.getHistory = async (req, res, next) => {
-  const { name } = req.body;
+  const { fullname } = req.body;
   try {
     const getHistoryQuery = `
         SELECT change FROM history 
         WHERE name = $1
+        RETURNING *
         `;
-    const result = await db.query(getHistoryQuery, [name]);
+    const result = await db.query(getHistoryQuery, [fullname]);
     res.locals.history = [];
     for (let record of result.rows) {
       res.locals.history.push(record.change);

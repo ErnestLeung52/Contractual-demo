@@ -16,21 +16,44 @@ const UserList = ({ user, setUser }) => {
   //   }
   // };
 
-  const getUserList = async () => {
+  // const getUserList = async () => {
+  //   try {
+  //     const response = await fetch('http://localhost:5000/api/user');
+  //     const list = await response.json();
+  //     setUser(list);
+  //     //   console.log('list', list);
+  //   } catch (error) {
+  //     console.error(error.message);
+  //   }
+  // };
+
+  const onSubmitForm = async (e) => {
+    e.preventDefault();
+
+    const url = 'http://localhost:5000';
+    const endpoint = '/history';
+
+    console.log('user', user);
     try {
-      const response = await fetch('http://localhost:5000/api/user');
-      const list = await response.json();
-      setUser(list);
-      //   console.log('list', list);
+      const response = await fetch(`${url}${endpoint}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'Application/JSON' },
+        body: JSON.stringify(user),
+      });
+
+      const data = await response.json();
+      // const userAdded = data.user.rows[0];
+      console.log('res', data);
+      // setUser([...userList, userAdded]);
     } catch (error) {
       console.error(error.message);
     }
   };
 
-  let equilibrium = 0;
-  user.forEach((player) => {
-    equilibrium += Number(player.profit);
-  });
+  // let equilibrium = 0;
+  // user.forEach((player) => {
+  //   equilibrium += Number(player.profit);
+  // });
 
   // useEffect(() => {
   //   getUserList();
@@ -38,9 +61,10 @@ const UserList = ({ user, setUser }) => {
 
   return (
     <>
-      <div>
-        <span>Check History</span>
-        <button onClick={getUserList}>Check</button>
+      <div className='history-container'>
+        <button className='check-button' onClick={onSubmitForm}>
+          Check History
+        </button>
       </div>
       <table className='styled-table'>
         <thead>

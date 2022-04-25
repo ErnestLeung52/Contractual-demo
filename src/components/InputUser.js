@@ -19,20 +19,19 @@ const InputUser = ({ user: userList, setUser }) => {
     e.preventDefault();
 
     const url = 'http://localhost:5000';
-    const endpoint = '/api/user';
+    const endpoint = '/users';
 
     try {
-      const body = { user };
+      // const body = { user };
+      console.log('client request', user);
       const response = await fetch(`${url}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'Application/JSON' },
-        body: JSON.stringify(body),
+        body: JSON.stringify(user),
       });
 
-      const data = await response.json();
-      const userAdded = data.user.rows[0];
-
-      setUser([...userList, userAdded]);
+      const res = await response.json();
+      // alert(JSON.stringify(res.data));
     } catch (error) {
       console.error(error.message);
     }
