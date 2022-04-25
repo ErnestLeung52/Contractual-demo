@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-const InputUser = ({ user: userList, setUser }) => {
+const UpdateBalance = ({ user: userList, setUser }) => {
   const [user, createUser] = useState({
     fullname: '',
-    age: '',
+    change: '',
     // buyin: '',
     // ending: '',
   });
@@ -19,19 +19,21 @@ const InputUser = ({ user: userList, setUser }) => {
     e.preventDefault();
 
     const url = 'http://localhost:5000';
-    const endpoint = '/users';
+    const endpoint = '/balance';
 
+    // console.log(user);
     try {
-      // const body = { user };
-      console.log('client request', user);
       const response = await fetch(`${url}${endpoint}`, {
-        method: 'POST',
+        method: 'PATCH',
         headers: { 'Content-Type': 'Application/JSON' },
         body: JSON.stringify(user),
       });
 
       const res = await response.json();
-      alert(res);
+      // const userAdded = data.user.rows[0];
+      // console.log(data);
+      // setUser([...userList, userAdded]);
+      alert(JSON.stringify(res));
     } catch (error) {
       console.error(error.message);
     }
@@ -39,7 +41,7 @@ const InputUser = ({ user: userList, setUser }) => {
 
   return (
     <div className='input-container'>
-      <h3>Add Player</h3>
+      <h3>Update Balance</h3>
       <form className='input-form' onSubmit={onSubmitForm}>
         <div className='input-row'>
           <input
@@ -51,12 +53,12 @@ const InputUser = ({ user: userList, setUser }) => {
           />
           <input
             type='text'
-            placeholder='Age'
-            name='age'
-            value={user.age}
+            placeholder='Change'
+            name='change'
+            value={user.change}
             onChange={handleChange}
           />
-          <button className='addButton'>Create</button>
+          <button className='addButton'>Update</button>
         </div>
         {/* <div className='input-row'>
           <input
@@ -79,4 +81,4 @@ const InputUser = ({ user: userList, setUser }) => {
   );
 };
 
-export default InputUser;
+export default UpdateBalance;
