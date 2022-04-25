@@ -46,7 +46,7 @@
 
 .input-form input {
   width: 160px;
-  height: 20px;
+  height: 40px;
   border-radius: 6px;
   border: none;
   margin: 10px;
@@ -58,7 +58,7 @@
 }
 
 .addButton {
-  height: 20px;
+  height: 40px;
   border-radius: 6px;
   background-color: darkgray;
   color: white;
@@ -87,7 +87,7 @@
 }
 .check-form input {
   width: 160px;
-  height: 20px;
+  height: 40px;
   border-radius: 6px;
   border: none;
   background-color: #dddddd;
@@ -99,7 +99,7 @@
   color: #fff;
   border: none;
   border-radius: 10px;
-  height: 25px;
+  height: 40px;
   width: 80px;
 }
 

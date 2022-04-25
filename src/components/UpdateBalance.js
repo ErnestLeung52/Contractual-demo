@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const UpdateBalance = ({ user: userList, setUser }) => {
   const [user, createUser] = useState({
-    fullname: '',
-    change: '',
-    // buyin: '',
-    // ending: '',
+    fullname: "",
+    change: "",
   });
 
   const handleChange = (event) => {
@@ -18,14 +16,14 @@ const UpdateBalance = ({ user: userList, setUser }) => {
   const onSubmitForm = async (e) => {
     e.preventDefault();
 
-    const url = 'http://localhost:5000';
-    const endpoint = '/balance';
+    const url = "http://localhost:5000";
+    const endpoint = "/balance";
 
     // console.log(user);
     try {
       const response = await fetch(`${url}${endpoint}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'Application/JSON' },
+        method: "PATCH",
+        headers: { "Content-Type": "Application/JSON" },
         body: JSON.stringify(user),
       });
 
@@ -33,32 +31,35 @@ const UpdateBalance = ({ user: userList, setUser }) => {
       // const userAdded = data.user.rows[0];
       // console.log(data);
       // setUser([...userList, userAdded]);
-      alert(JSON.stringify(res));
+      alert(`
+      Successfully changed balance by ${user.change}.
+      Current balance is ${JSON.stringify(res)}
+      `);
     } catch (error) {
       console.error(error.message);
     }
   };
 
   return (
-    <div className='input-container'>
+    <div className="input-container">
       <h3>Update Balance</h3>
-      <form className='input-form' onSubmit={onSubmitForm}>
-        <div className='input-row'>
+      <form className="input-form" onSubmit={onSubmitForm}>
+        <div className="input-row">
           <input
-            type='text'
-            placeholder='Full Name'
-            name='fullname'
+            type="text"
+            placeholder="Full Name"
+            name="fullname"
             value={user.fullname}
             onChange={handleChange}
           />
           <input
-            type='text'
-            placeholder='Change'
-            name='change'
+            type="text"
+            placeholder="Change"
+            name="change"
             value={user.change}
             onChange={handleChange}
           />
-          <button className='addButton'>Update</button>
+          <button className="addButton">Update</button>
         </div>
         {/* <div className='input-row'>
           <input

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const InputUser = ({ user: userList, setUser }) => {
   const [user, createUser] = useState({
-    fullname: '',
-    age: '',
+    fullname: "",
+    age: "",
     // buyin: '',
     // ending: '',
   });
@@ -18,45 +18,50 @@ const InputUser = ({ user: userList, setUser }) => {
   const onSubmitForm = async (e) => {
     e.preventDefault();
 
-    const url = 'http://localhost:5000';
-    const endpoint = '/users';
+    const url = "http://localhost:5000";
+    const endpoint = "/users";
 
     try {
       // const body = { user };
-      console.log('client request', user);
+      console.log("client request", user);
       const response = await fetch(`${url}${endpoint}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'Application/JSON' },
+        method: "POST",
+        headers: { "Content-Type": "Application/JSON" },
         body: JSON.stringify(user),
       });
 
       const res = await response.json();
-      alert(res);
+      alert(
+        `
+        Response from server:
+        ${JSON.stringify(res)}
+        `
+      );
     } catch (error) {
       console.error(error.message);
     }
   };
 
   return (
-    <div className='input-container'>
+    <div className="input-container">
       <h3>Add Player</h3>
-      <form className='input-form' onSubmit={onSubmitForm}>
-        <div className='input-row'>
+      <form className="input-form" onSubmit={onSubmitForm}>
+        <div className="input-row">
           <input
-            type='text'
-            placeholder='Full Name'
-            name='fullname'
+            type="text"
+            placeholder="Full Name"
+            name="fullname"
             value={user.fullname}
             onChange={handleChange}
           />
           <input
-            type='text'
-            placeholder='Age'
-            name='age'
+            type="text"
+            placeholder="Age"
+            name="age"
             value={user.age}
             onChange={handleChange}
           />
-          <button className='addButton'>Create</button>
+          <button className="addButton">Create</button>
         </div>
         {/* <div className='input-row'>
           <input
