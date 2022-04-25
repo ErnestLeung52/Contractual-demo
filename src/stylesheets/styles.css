@@ -77,16 +77,30 @@
   margin-top: 2%;
 }
 
+.check-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: white; */
+  top: 10px;
+  padding-left: 15px;
+}
+.check-form input {
+  width: 160px;
+  height: 20px;
+  border-radius: 6px;
+  border: none;
+  background-color: #dddddd;
+  margin-right: 15px;
+}
+
 .check-button {
-  /* position: absolute; */
-  display: block;
-  margin: 0 auto;
   background-color: rgb(121, 118, 118);
   color: #fff;
   border: none;
   border-radius: 10px;
-  height: 35px;
-  width: 120px;
+  height: 25px;
+  width: 80px;
 }
 
 .check-button:hover {
@@ -109,11 +123,12 @@
 .styled-table thead tr {
   background-color: #007e83;
   color: #ffffff;
-  text-align: left;
+  /* text-align: left; */
 }
 
 .styled-table th,
 .styled-table td {
+  /* vertical-align: top; */
   padding: 12px 15px;
 }
 

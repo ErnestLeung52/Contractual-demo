@@ -80,12 +80,12 @@ dbController.changeBalance = async (req, res, next) => {
 
 // Get History
 dbController.getHistory = async (req, res, next) => {
+  console.log(req.body);
   const { fullname } = req.body;
   try {
     const getHistoryQuery = `
         SELECT change FROM history 
         WHERE name = $1
-        RETURNING *
         `;
     const result = await db.query(getHistoryQuery, [fullname]);
     res.locals.history = [];
@@ -94,6 +94,7 @@ dbController.getHistory = async (req, res, next) => {
     }
     return next();
   } catch (error) {
+    console.log(error);
     return next({
       status: 400,
       success: false,
