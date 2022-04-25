@@ -31,7 +31,7 @@ const InputUser = ({ user: userList, setUser }) => {
       });
 
       const res = await response.json();
-      // alert(JSON.stringify(res.data));
+      alert(res);
     } catch (error) {
       console.error(error.message);
     }

@@ -29,10 +29,11 @@ const UpdateBalance = ({ user: userList, setUser }) => {
         body: JSON.stringify(user),
       });
 
-      const data = await response.json();
+      const res = await response.json();
       // const userAdded = data.user.rows[0];
       // console.log(data);
       // setUser([...userList, userAdded]);
+      alert(JSON.stringify(res));
     } catch (error) {
       console.error(error.message);
     }
