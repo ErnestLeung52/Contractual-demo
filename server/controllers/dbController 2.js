@@ -7,10 +7,10 @@ dbController.addUser = async (req, res, next) => {
   const { name, age } = req.body;
   try {
     const addUserQuery = `
-    INSERT INTO users (name, age)
-    VALUES($1, $2)
-    RETURNING *
-    `;
+        INSERT INTO users (name, age)
+          VALUES($1, $2)
+          RETURNING *
+        `;
     await db.query(addUserQuery, [name, age]);
   } catch (error) {
     return next({
@@ -45,7 +45,6 @@ dbController.addUser = async (req, res, next) => {
 
 // Add Balance
 dbController.changeBalance = async (req, res, next) => {
-  console.log(req.body);
   const { name, change } = req.body;
   try {
     const addHistoryQuery = `
@@ -81,24 +80,19 @@ dbController.changeBalance = async (req, res, next) => {
 
 // Get History
 dbController.getHistory = async (req, res, next) => {
-  console.log(req.body);
   const { name } = req.body;
-  console.log("name is ", name);
   try {
     const getHistoryQuery = `
         SELECT change FROM history 
         WHERE name = $1
         `;
     const result = await db.query(getHistoryQuery, [name]);
-    console.log("result is ", result);
-
     res.locals.history = [];
     for (let record of result.rows) {
       res.locals.history.push(record.change);
     }
     return next();
   } catch (error) {
-    console.log(error);
     return next({
       status: 400,
       success: false,

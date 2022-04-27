@@ -7,16 +7,27 @@ const UpdateBalance = ({ user: userList, setUser }) => {
   });
 
   const handleChange = (event) => {
-    createUser({
-      ...user,
-      [event.target.name]: event.target.value,
-    });
+    // createUser({
+    //   ...user,
+    //   [event.target.name]: event.target.value,
+    // });
+    if (event.target.name === "change") {
+      createUser({
+        ...user,
+        [event.target.name]: Number(event.target.value),
+      });
+    } else {
+      createUser({
+        ...user,
+        [event.target.name]: event.target.value,
+      });
+    }
   };
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
 
-    const url = "http://localhost:5000";
+    const url = "http://localhost:1234";
     const endpoint = "/balance";
 
     // console.log(user);
@@ -49,7 +60,7 @@ const UpdateBalance = ({ user: userList, setUser }) => {
             type="text"
             placeholder="Full Name"
             name="fullname"
-            value={user.fullname}
+            value={user.name}
             onChange={handleChange}
           />
           <input
