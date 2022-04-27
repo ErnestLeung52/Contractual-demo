@@ -2,23 +2,30 @@ import React, { useState } from "react";
 
 const InputUser = ({ user: userList, setUser }) => {
   const [user, createUser] = useState({
-    fullname: "",
+    name: "",
     age: "",
     // buyin: '',
     // ending: '',
   });
 
   const handleChange = (event) => {
-    createUser({
-      ...user,
-      [event.target.name]: event.target.value,
-    });
+    if (event.target.name === "age") {
+      createUser({
+        ...user,
+        [event.target.name]: Number(event.target.value),
+      });
+    } else {
+      createUser({
+        ...user,
+        [event.target.name]: event.target.value,
+      });
+    }
   };
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
 
-    const url = "http://localhost:5000";
+    const url = "http://localhost:1234";
     const endpoint = "/users";
 
     try {
@@ -50,12 +57,12 @@ const InputUser = ({ user: userList, setUser }) => {
           <input
             type="text"
             placeholder="Full Name"
-            name="fullname"
-            value={user.fullname}
+            name="name"
+            value={user.name}
             onChange={handleChange}
           />
           <input
-            type="text"
+            type="number"
             placeholder="Age"
             name="age"
             value={user.age}

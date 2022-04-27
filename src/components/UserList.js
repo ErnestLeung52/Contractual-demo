@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import EditBalance from './EditBalance';
-import TotalStat from './TotalStat';
+import React, { useEffect, useState } from "react";
+import EditBalance from "./EditBalance";
+import TotalStat from "./TotalStat";
 
 // { user: userList, setUser }
 const UserList = () => {
   const [user, createUser] = useState({
-    fullname: '',
+    name: "",
     history: [],
   });
 
@@ -36,21 +36,21 @@ const UserList = () => {
   const getHistory = async (e) => {
     e.preventDefault();
 
-    const url = 'http://localhost:5000';
-    const endpoint = '/history';
+    const url = "http://localhost:1234";
+    const endpoint = "/history";
 
-    console.log('user', user);
+    console.log("user", user);
     try {
       const response = await fetch(`${url}${endpoint}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'Application/JSON' },
+        method: "POST",
+        headers: { "Content-Type": "Application/JSON" },
         body: JSON.stringify(user),
       });
 
       const data = await response.json();
-      console.log('res', data);
+      console.log("res", data);
       // const userAdded = data.user.rows[0];
-      createUser({ fullname: user.fullname, history: data });
+      createUser({ name: user.name, history: data });
     } catch (error) {
       console.error(error.message);
     }
@@ -83,19 +83,19 @@ const UserList = () => {
           </button>
         </div>
       </div> */}
-      <form className='check-form' onSubmit={getHistory}>
+      <form className="check-form" onSubmit={getHistory}>
         {/* <div className='input-row'> */}
         <input
-          type='text'
-          placeholder='Full Name'
-          name='fullname'
-          value={user.fullname}
+          type="text"
+          placeholder="Full Name"
+          name="name"
+          value={user.name}
           onChange={handleChange}
         />
-        <button className='check-button'>Get History</button>
+        <button className="check-button">Get History</button>
         {/* </div> */}
       </form>
-      <table className='styled-table'>
+      <table className="styled-table">
         <thead>
           <tr>
             <th>Player</th>
@@ -108,7 +108,7 @@ const UserList = () => {
         </thead>
         <tbody>
           <tr>
-            <td>{user.fullname}</td>
+            <td>{user.name}</td>
             <td>{JSON.stringify(user.history)}</td>
           </tr>
           {/* {user.map((player, index) => (
