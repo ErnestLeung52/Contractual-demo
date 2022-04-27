@@ -7,6 +7,7 @@
     #007e83,
     #16a085
   );
+  font-family:Arial, Helvetica, sans-serif;
   position: absolute;
   top: 0;
   left: 0;
@@ -51,6 +52,7 @@
   border: none;
   margin: 10px;
   background-color: #dddddd;
+  padding: 0px 8px;
 }
 
 ::placeholder {
@@ -92,6 +94,7 @@
   border: none;
   background-color: #dddddd;
   margin-right: 15px;
+  padding: 0px 8px;
 }
 
 .check-button {
