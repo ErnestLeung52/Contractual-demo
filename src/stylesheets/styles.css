@@ -7,6 +7,7 @@
     #007e83,
     #16a085
   );
+  font-family:Arial, Helvetica, sans-serif;
   position: absolute;
   top: 0;
   left: 0;
@@ -14,6 +15,13 @@
   width: 100%;
 }
 
+button:hover {
+  cursor: pointer;
+}
+h1 {
+  text-align: center;
+  color: teal;
+}
 .sub-container {
   /* position: relative; */
   overflow: auto;
@@ -24,13 +32,14 @@
 
 .input-container {
   /* position: relative; */
-  margin: 5% 15%;
+  margin: 20px;
   background-color: white;
   border-radius: 10px;
 }
 
 .input-container h3 {
   background-color: #007e83;
+  font-weight: 400;
   color: white;
   padding: 1.5%;
   text-align: center;
@@ -42,15 +51,19 @@
 .input-form {
   top: 10px;
   padding-left: 15px;
+  display: block;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 .input-form input {
-  width: 160px;
+  width: 50%;
   height: 40px;
   border-radius: 6px;
   border: none;
   margin: 10px;
   background-color: #dddddd;
+  padding: 0px 8px;
 }
 
 ::placeholder {
@@ -64,6 +77,8 @@
   color: white;
   text-align: center;
   border: none;
+  padding: 5px 15px;
+  width: 30%;
 }
 
 .addButton:hover {
@@ -83,34 +98,36 @@
   align-items: center;
   /* background-color: white; */
   top: 10px;
-  padding-left: 15px;
+  margin-bottom: 15px;
 }
 .check-form input {
-  width: 160px;
   height: 40px;
   border-radius: 6px;
   border: none;
   background-color: #dddddd;
   margin-right: 15px;
+  padding: 0px 8px;
 }
 
 .check-button {
   background-color: rgb(121, 118, 118);
   color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   height: 40px;
-  width: 80px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .check-button:hover {
-  background-color: #3160e1;
-  transition: 0.7s;
+  background-color: #007e83;
+  color: white;
 }
 
 .styled-table {
   border-collapse: collapse;
-  margin: 10px 0;
+  margin-top: 10px;
+  margin-bottom: 20px;
   font-size: 0.9em;
   font-family: sans-serif;
   min-width: 450px;
