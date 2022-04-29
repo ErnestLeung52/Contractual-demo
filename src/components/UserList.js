@@ -39,12 +39,11 @@ const UserList = () => {
     const url = "http://localhost:1234";
     const endpoint = "/history";
 
-    console.log("user", user);
     try {
       const response = await fetch(`${url}${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "Application/JSON" },
-        body: JSON.stringify(user),
+        body: JSON.stringify({ name: user.name }),
       });
 
       const data = await response.json();
